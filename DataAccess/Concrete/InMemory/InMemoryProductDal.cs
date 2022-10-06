@@ -30,17 +30,33 @@ namespace DataAccess.Concrete.InMemory
 
         public void Delete(Product product)
         {
-            throw new NotImplementedException();
+            // LINQ - Language Integrated Query
+            Product productToDelete=_products.SingleOrDefault(p=>p.ProductId==product.ProductId);// Döngü görevi görür. eşleşen ıdnin referansını productToDelete 'e ekler.
+
+            _products.Remove(productToDelete);
         }
 
         public List<Product> GetAll()
         {
-            return _products;// todo: 2.12
+            return _products;
+        }
+
+        public List<Product> GetAllByCategory(int categoryId)
+        {
+           return _products.Where(p => p.CategoryId == categoryId).ToList();// içindeki şarta uyan bütün elemanları yeni bir liste haline getirir ve onu döndürür
         }
 
         public void Update(Product product)
         {
-            throw new NotImplementedException();
+            // Gönderdiğim ürün id'sine sahip olan ürün idsine sahip ürünü bul 
+            Product productToUpdate = _products.SingleOrDefault(p => p.ProductId == product.ProductId);// Döngü görevi görür. eşleşen ıdnin referansını productToDelete 'e ekler.
+            productToUpdate.ProductName = product.ProductName;
+            productToUpdate.CategoryId= product.CategoryId;
+            productToUpdate.UnitPrice = product.UnitPrice;
+            productToUpdate.UnitsInStock= product.UnitsInStock;
+
+
+            
         }
     }
 }
