@@ -14,7 +14,7 @@ namespace Business.Concrete
     {
         IProductDal _productDal;
 
-        public ProductManager(IProductDal productDal)// ctor
+        public ProductManager(IProductDal productDal)// ctor. IProductDal referansı gelecek. Yani Entity ya da InMemory
         {
             _productDal = productDal;
         }
