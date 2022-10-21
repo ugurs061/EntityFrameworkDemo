@@ -19,5 +19,15 @@ namespace Business.Concrete
             // Yetkisi var mı ?
             return _productDal.GetAll();
         }
+
+        public List<Product> GetAllByCategoryId(int id)
+        {
+            return _productDal.GetAll(p => p.CategoryId == id); // id'e göre filtreleme işlemi
+        }
+
+        public List<Product> GetByUnitPrice(decimal min, decimal max)
+        {
+            return _productDal.GetAll(p => p.UnitPrice >= min && p.UnitPrice <= max);// min ve max unit price'e göre filtreleme işlemi
+        }
     }
 }

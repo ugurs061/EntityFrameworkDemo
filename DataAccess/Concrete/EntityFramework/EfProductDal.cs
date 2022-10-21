@@ -30,12 +30,18 @@ namespace DataAccess.Concrete.EntityFramework
 
         public Product Get(Expression<Func<Product, bool>> filter)
         {
-            throw new NotImplementedException();
+            using (NorthwindContext context=new NorthwindContext())
+            {
+                return context.Set<Product>().SingleOrDefault(filter); // tek bir veriyi getirmek için kullanılır.
+            }
         }
 
         public List<Product> GetAll(Expression<Func<Product, bool>> filter = null)
         {
-            throw new NotImplementedException();
+            using (NorthwindContext context = new NorthwindContext())
+            {
+                return filter == null ? context.Set<Product>().ToList() : context.Set<Product>().Where(filter).ToList(); // Filtre null ise Veritabanındaki product ı bulup listeye çevirip geri verir. Değilse, filtreli halini getir.
+            }
         }
 
         public void Update(Product entity)
