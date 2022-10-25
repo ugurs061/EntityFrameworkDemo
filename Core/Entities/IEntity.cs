@@ -1,4 +1,4 @@
-﻿namespace Entities.Abstract
+﻿namespace Core.Entities
 {   // veri tabanı nesnesi
     // IEntity implement eden class bir veritabanı tablosudur.
     public interface IEntity

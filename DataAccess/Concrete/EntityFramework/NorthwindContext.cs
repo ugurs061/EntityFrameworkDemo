@@ -13,5 +13,6 @@ namespace DataAccess.Concrete.EntityFramework
         public DbSet<Product> Products { get; set; } // veritabanı nesnesini oluşturduğumuz ilgili classa bağlanılması
         public DbSet<Category> Categories { get; set; }
         public DbSet<Customer> Customers { get; set; }
+        public DbSet<Order> Orders { get; set; }
     }
 }

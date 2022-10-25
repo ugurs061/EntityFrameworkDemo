@@ -1,7 +1,7 @@
-﻿using Entities.Abstract;
+﻿using Core.Entities;
 using System.Linq.Expressions;
 
-namespace DataAccess.Abstract
+namespace Core.DataAccess
 {
     // generic constraint-- generic kısıt
     // class referans tip
