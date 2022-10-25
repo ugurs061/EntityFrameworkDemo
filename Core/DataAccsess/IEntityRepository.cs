@@ -5,7 +5,7 @@ namespace Core.DataAccess
 {
     // generic constraint-- generic kısıt
     // class referans tip
-    // where T:ClassiIEntity ile generic constraint yapıldı
+    // where T:Class,IEntity ile generic constraint yapıldı
     // IEntity demek; hem IEntity olabilir hem de referansı olan classlar olabilir.
     // new() : newlenebilir olmalı şartı eklendi 
     public interface IEntityRepository<T> where T : class, IEntity, new() // Generic kullandıldı. Çünkü Product,Category gibi nesnelerin tiplerini otomatize etmek için kullanırız.
