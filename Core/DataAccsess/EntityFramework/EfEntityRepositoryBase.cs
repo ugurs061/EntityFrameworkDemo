@@ -7,8 +7,8 @@ namespace Core.DataAccsess.EntityFramework
 {
     // bir tane entity ve context tipi ister
     public class EfEntityRepositoryBase<TEntity, TContext>:IEntityRepository<TEntity>// hangi tabloyu verirsem(TEntity) onun EntityRepositorysi çalışsın
-        where TEntity : class, IEntity, new()
-        where TContext : DbContext, new()
+        where TEntity : class, IEntity, new() // bir IEntity olması belirtildi. // temel operasyonları kullanmak için IEntity Repository 'i implament ediyoruz.
+        where TContext : DbContext, new() // entity framework'un contextini kullanıldı. 
     {
         public void Add(TEntity entity)
         {
