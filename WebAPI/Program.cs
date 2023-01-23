@@ -3,7 +3,7 @@ using Autofac.Extensions.DependencyInjection;
 using Business.DependencyResolvers.Autofac;
 
 var builder = WebApplication.CreateBuilder(args);
-builder.Host.UseServiceProviderFactory(new AutofacServiceProviderFactory());
+builder.Host.UseServiceProviderFactory(new AutofacServiceProviderFactory()); // Autofac provider
 builder.Host.ConfigureContainer<ContainerBuilder>(builder =>
 {
     builder.RegisterModule(new AutofacBusinessModule());
