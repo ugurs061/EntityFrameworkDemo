@@ -1,4 +1,5 @@
 ﻿using Business.Abstract;
+using Business.CCS;
 using Business.Constants;
 using Business.ValidationRules.FluentValidation;
 using Core.Aspects.Autofac.Validation;
@@ -13,21 +14,33 @@ namespace Business.Concrete
     public class ProductManager : IProductService
     {
         IProductDal _productDal; // dışarıdan bir inteface geldiği için Dİ kullanyoruz
-
-        public ProductManager(IProductDal productDal)// ctor. IProductDal referansı gelecek. Yani Entity ya da InMemory
+        ILogger _logger;
+        public ProductManager(IProductDal productDal, ILogger logger)// ctor. IProductDal referansı gelecek. Yani Entity ya da InMemory
         {
             _productDal = productDal;
+            _logger = logger;
         }
 
-        [ValidationAspect(typeof(ProductValidator))]
+
+        // [ValidationAspect(typeof(ProductValidator))]
         public IResult Add(Product product)
         {
             // validation : nesnenin yapısı ile ilgilidir.
             // business codes : iş ihtiyaçlarına uygunluk ile ilgilidir.
+            _logger.Log();
+            try
+            {
+                _productDal.Add(product);
 
-            _productDal.Add(product);
+                return new SuccessResult(Messages.ProductAdded);
+            }
+            catch (Exception exception)
+            {
 
-            return new SuccessResult(Messages.ProductAdded);
+                _logger.Log();
+            }
+            return new ErrorResult();
+            
         }
 
         public IDataResult<List<Product>> GetAll()
