@@ -1,5 +1,4 @@
 ﻿using Business.Abstract;
-using Business.CCS;
 using Business.Constants;
 using Business.ValidationRules.FluentValidation;
 using Core.Aspects.Autofac.Validation;
@@ -14,11 +13,11 @@ namespace Business.Concrete
     public class ProductManager : IProductService
     {
         IProductDal _productDal; // dışarıdan bir inteface geldiği için Dİ kullanyoruz
-        ICategoryService categoryService;
+        ICategoryService _categoryService;
         public ProductManager(IProductDal productDal, ICategoryService categoryService)// ctor. IProductDal referansı gelecek. Yani Entity ya da InMemory
         {
             _productDal = productDal;
-            _categoryService = categoryService; // 2.46
+            _categoryService = categoryService; 
         }
 
 
@@ -28,7 +27,7 @@ namespace Business.Concrete
             // validation : nesnenin yapısı ile ilgilidir.
             // business codes : iş ihtiyaçlarına uygunluk ile ilgilidir.
             IResult result = BusinessRules.Run(CheckIfProductNameExists(product.ProductName),
-                CheckIfProductCountOfCategoryCorrept(product.CategoryId));
+                CheckIfProductCountOfCategoryCorrept(product.CategoryId), CheckIfCategoryLimitExceded());
 
             if (result != null)
             {
@@ -100,16 +99,16 @@ namespace Business.Concrete
 
         }
 
-        private IResult CheckCategory(int categoryId)
+        private IResult CheckIfCategoryLimitExceded() 
         {
-
-            var result = _productDal.GetAll(p => p.CategoryId == categoryId).Count;
-            if (result >= 10)
+            var result = _categoryService.GetAll();
+            if (result.Data.Count >= 15)
             {
-                return new ErrorResult(Messages.ProductCountOfCategoryError);
+                return new ErrorResult(Messages.CategoryLimitExceded);
             }
             return new SuccessResult();
         }
+
 
     }
 }
