@@ -18,7 +18,7 @@ namespace Business.Concrete
         public ProductManager(IProductDal productDal, ICategoryService categoryService)// ctor. IProductDal referansı gelecek. Yani Entity ya da InMemory
         {
             _productDal = productDal;
-            _categoryService = categoryService; 
+            _categoryService = categoryService;
         }
 
         [SecuredOperation("product.add,admin")]
@@ -100,7 +100,7 @@ namespace Business.Concrete
 
         }
 
-        private IResult CheckIfCategoryLimitExceded() 
+        private IResult CheckIfCategoryLimitExceded()
         {
             var result = _categoryService.GetAll();
             if (result.Data.Count >= 15)
