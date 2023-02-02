@@ -1,11 +1,10 @@
 ﻿using Business.Constants;
 using Castle.DynamicProxy;
+using Core.Extensions;
 using Core.Utilities.Interceptors;
 using Core.Utilities.IoC;
 using Microsoft.AspNetCore.Http;
-using Castle.DynamicProxy;
 using Microsoft.Extensions.DependencyInjection;
-using Core.Extensions;
 
 namespace Business.BusinessAspects.Autofac
 {   // yetki kontrolü yapar

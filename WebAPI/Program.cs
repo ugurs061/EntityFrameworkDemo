@@ -11,8 +11,6 @@ using Microsoft.IdentityModel.Tokens;
 
 
 
-
-
 var builder = WebApplication.CreateBuilder(args);
 builder.Host.UseServiceProviderFactory(new AutofacServiceProviderFactory()); // Autofac provider
 builder.Host.ConfigureContainer<ContainerBuilder>(builder =>
@@ -25,6 +23,7 @@ builder.Host.ConfigureContainer<ContainerBuilder>(builder =>
 builder.Services.AddControllers();
 //builder.Services.AddSingleton<IProductService, ProductManager>(); // IoC Container
 //builder.Services.AddSingleton<IProductDal,EfProductDal>();
+builder.Services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 
 var tokenOptions = builder.Configuration.GetSection("TokenOptions").Get<TokenOptions>();
 
