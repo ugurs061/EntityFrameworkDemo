@@ -3,7 +3,7 @@ using System.Reflection;
 
 namespace Core.Utilities.Interceptors
 { 
-
+    // Attributelerin okunması 
     public class AspectInterceptorSelector : IInterceptorSelector
     {
         public IInterceptor[] SelectInterceptors(Type type, MethodInfo method, IInterceptor[] interceptors)
