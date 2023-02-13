@@ -82,7 +82,7 @@ namespace Business.Concrete
         [CacheRemoveAspect("IProductService.Get")]
         public IResult Update(Product product)
         {
-            throw new NotImplementedException();
+            return new SuccessResult(Messages.ProductUpdated);
         }
 
         private IResult CheckIfProductCountOfCategoryCorrept(int categoryId)
