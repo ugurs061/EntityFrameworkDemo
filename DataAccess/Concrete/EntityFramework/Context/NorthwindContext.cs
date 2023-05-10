@@ -9,7 +9,7 @@ namespace DataAccess.Concrete.EntityFramework.Context
     {
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)// veri tabanının belirtilmesi
         {
-            optionsBuilder.UseSqlServer(@"Server=(localdb)\MSSQLLocalDB;Database=Northwind;Trusted_Connection=true");
+            optionsBuilder.UseSqlServer(@"Server=(localdb)\ProjectModels;Database=Northwind;Trusted_Connection=true");
         }
         public DbSet<Product> Products { get; set; } // veritabanı nesnesini oluşturduğumuz ilgili classa bağlanılması
         public DbSet<Category> Categories { get; set; }
